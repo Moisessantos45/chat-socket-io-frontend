@@ -1,0 +1,39 @@
+import { Link } from "react-router-dom";
+import urlAxios from "../config/UrlAxios";
+import UseApp from "../Hooks/UseApp";
+
+const NavbarChat = () => {
+  const { id } = UseApp();
+  const logout = async () => {
+    try {
+      await urlAxios.post("/chat/logout", { id });
+      localStorage.removeItem("token-id-user");
+      localStorage.removeItem("id_user");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <>
+      <header className="flex justify-center items-center bg-indigo-500 h-12">
+        <h1 className=" text-white font-bold text-xl text-center w-9/12">
+          Administra tus conversaciones
+        </h1>
+        <Link
+          to="perfil"
+          className=" w-16 h-8 ml-auto m-1 profile rounded-md text-white font-bold"
+        >
+          Perfil
+        </Link>
+        <button
+          className=" w-20 h-8 m-1 profile rounded-md text-white font-bold"
+          onClick={logout}
+        >
+          Logout
+        </button>
+      </header>
+    </>
+  );
+};
+
+export default NavbarChat;
