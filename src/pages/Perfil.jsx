@@ -137,6 +137,16 @@ const Perfil = () => {
           />
         </div>
         <div className="width margin flex gap-1 flex-col justify-center">
+        <label htmlFor="id" className=" m-1 font-bold">
+            Id:
+          </label>
+          <input
+            type="text"
+            name="id"
+            id="id"
+            className="outline outline-1 outline-slate-300 hover:outline-blue-700 hover:outline-2 rounded-sm"
+            value={id}
+          />
           <label htmlFor="email" className=" m-1 font-bold">
             Email:
           </label>

@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import urlAxios from "../config/UrlAxios";
 import UseApp from "../Hooks/UseApp";
 
 const NavbarChat = () => {
   const { id } = UseApp();
+  const navigate=useNavigate()
   const logout = async () => {
     try {
       await urlAxios.post("/chat/logout", { id });
       localStorage.removeItem("token-id-user");
       localStorage.removeItem("id_user");
+      navigate("/")
     } catch (error) {
       console.log(error);
     }
