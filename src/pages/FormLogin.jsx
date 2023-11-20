@@ -71,7 +71,7 @@ const FormLogin = () => {
           </form>
           <div className="form-section">
             <p>
-              Aun no tienes cuenta? <Link to="/register">Log in</Link>{" "}
+              Aun no tienes cuenta? <Link to="/register">Crear cuenta</Link>{" "}
             </p>
           </div>
         </div>
