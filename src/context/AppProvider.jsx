@@ -15,7 +15,7 @@ const AppProvider = ({ children }) => {
     const autenticarUser = async () => {
       const token = localStorage.getItem("token-id-user");
       if (!token) {
-        // setLoader(false);
+        setLoading(false);
         return;
       }
       const confi = {
