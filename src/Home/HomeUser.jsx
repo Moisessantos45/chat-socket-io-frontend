@@ -23,6 +23,8 @@ const HomeUser = () => {
     contactos,
     actulizar_contacto,
     eliminar_contacto,
+    mostrarChat,
+    setMostrarChat,
   } = UseApp();
   const [mensajes, setMensajes] = useState([]);
   const [mensaje, setMensaje] = useState("");
@@ -137,13 +139,17 @@ const HomeUser = () => {
     setContacto(dato);
     setcontactoId(dato.id);
     setIndice(pos);
+    const esMovil = window.matchMedia("(max-width: 768px)").matches;
+    if (esMovil) {
+      setMostrarChat(!mostrarChat);
+    }
   };
-  // console.log(mensajes);
+  // console.log(mostrarChat);
   return (
     <>
       <main className=" w-11/12 m-auto flex justify-center flex-col items-center">
         <section className=" w-11/12 flex justify-center gap-2 m-2 flex-wrap relative">
-          <div className=" heigth w-5/12 bg-white rounded-md shadow-sm flex items-center shadow-slate-400 flex-col relative">
+          <div className=" heigth w-11/12 sm:w-5/12 bg-white rounded-md shadow-sm flex items-center shadow-slate-400 flex-col relative">
             <div className="m-1 width h-11 flex justify-center items-center">
               <form className=" w-full flex justify-center">
                 <input
@@ -161,7 +167,9 @@ const HomeUser = () => {
                   <div
                     key={items.id}
                     className=" w-full h-14 m-1 flex gap-1 hover:shadow-sm hover:shadow-slate-400 hover:border-l-4 hover:border-violet-950 transition-all rounded-sm cursor-pointer items-center"
-                    onClick={() => opciones(items, i)}
+                    onClick={() => {
+                      opciones(items, i);
+                    }}
                   >
                     <img src={items.foto} alt="" className=" rounded-md h-11" />
                     <div className=" flex flex-col">
@@ -190,10 +198,18 @@ const HomeUser = () => {
               onClick={() => setMostra(!mostrar)}
             />
           </div>
-          <div className=" heigth w-6/12 flex-col">
+          <div
+            className={`sm:w-6/12 flex-col w-12/12 heigth-chat sm:flex ${
+              mostrarChat ? "flex transition-all" : "hidden"
+            } `}
+          >
             {contacto?.id ? (
               <>
-                <div className=" w-full flex items-center gap-1 bg-white h-12 rounded-md">
+                <i
+                  className="fa-solid cursor-pointer fa-arrow-left m-1 text-2xl sm:hidden flex"
+                  onClick={() => setMostrarChat(!mostrarChat)}
+                ></i>
+                <div className=" w-full sm:outline-none outline-1 relative outline outline-slate-600 flex items-center gap-1 bg-white h-12 rounded-md">
                   <img
                     src={contacto.foto}
                     alt=""
@@ -219,7 +235,7 @@ const HomeUser = () => {
                     />
                   </button>
                 </div>
-                <Chats mensajes={mensajes}/>
+                <Chats mensajes={mensajes} />
                 {/* <div
                   className=" w-full flex flex-col scroll altura items-start"
                   ref={mensajesRef}
@@ -290,7 +306,9 @@ const HomeUser = () => {
                 </div>
               </>
             ) : (
-              <h1 className=" text-2xl text-center">Selecciona un chat</h1>
+              <h1 className=" text-2xl text-center sm:flex hidden">
+                Selecciona un chat
+              </h1>
             )}
           </div>
         </section>

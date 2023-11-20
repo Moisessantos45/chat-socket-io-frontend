@@ -14,15 +14,15 @@ const Perfil = () => {
   const [imagen, setImagen] = useState(null);
   const [url_imagen, setUrlImagen] = useState("");
   const [fondo, setFondo] = useState(null);
-  const [id,setId]=useState(null)
+  const [id, setId] = useState(null);
 
   useEffect(() => {
     if (userData?.id) {
       setEmail(userData.email);
       setNombre(userData.nombre);
       setUrlImagen(userData.url_imagen);
-      setFondo(userData.fondo)
-      setId(userData.id)
+      setFondo(userData.fondo);
+      setId(userData.id);
     }
   }, []);
 
@@ -64,14 +64,14 @@ const Perfil = () => {
         password,
         nombre,
         url_imagen,
-        fondo
+        fondo,
       });
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <main className=" w-10/12 bg-white heigth margin rounded-md">
+    <main className=" w-11/12 sm:w-10/12 bg-white heigth margin rounded-md">
       <div className="width flex m-2 gap-1">
         <Link to={`/chat/${userData.id}`} className=" m-2">
           <i className="fa-solid fa-arrow-left m-1 text-2xl"></i>
@@ -79,65 +79,69 @@ const Perfil = () => {
         </Link>
       </div>
       <form
-        className=" w-11/12 flex justify-center flex-wrap"
+        className="margin sm:m-0 w-11/12 flex justify-center flex-wrap"
         onSubmit={handelSubtmi}
       >
-        <div className="width margin flex items-center justify-evenly">
-          <div className=" w-3/12 flex flex-col">
-            <img
-              src={url_imagen}
-              alt=""
-              className=" rounded-full w-20 h-20 shadow-sm shadow-slate-400"
-            />
-            <h2>Foto perfil: {nombre}</h2>
+        <div className="width margin inline-block sm:flex items-center justify-evenly">
+          <div className=" flex justify-evenly w-11/12 items-center sm:w-5/12">
+            <div className=" w-3/12 flex flex-col">
+              <img
+                src={url_imagen}
+                alt=""
+                className=" rounded-full w-16 h-16 sm:w-20 sm:h-20 shadow-sm shadow-slate-400"
+              />
+              <h2>Foto perfil: {nombre}</h2>
+            </div>
+            <div className=" w-3/12 flex flex-col">
+              <img
+                src={fondo}
+                alt=""
+                className=" rounded-full w-16 h-16 sm:w-20 sm:h-20 shadow-sm shadow-slate-400"
+              />
+              <h2>Fondo chat</h2>
+            </div>
           </div>
-          <div className=" w-3/12 flex flex-col">
-            <img
-              src={fondo}
-              alt=""
-              className=" rounded-full w-20 h-20 shadow-sm shadow-slate-400"
+          <div className="w-11/12 flex gap-2 justify-center items-center">
+            <label
+              htmlFor="imagen"
+              className=" flex justify-center items-center w-32 h-12 gap-1 outline outline-1 outline-slate-500 rounded-md text-black text-xl cursor-pointer"
+            >
+              Imagen
+              <i className="fa-regular fa-image"></i>
+            </label>
+            <input
+              type="file"
+              name="imagen"
+              id="imagen"
+              className="ocultar"
+              onChange={(e) => setImagen(e.target.files[0])}
             />
-            <h2>Fondo chat</h2>
+            <label
+              htmlFor="fondo"
+              className=" flex justify-center items-center w-32 h-12 gap-1 outline outline-1 outline-slate-500 rounded-md text-black text-xl cursor-pointer"
+            >
+              Fondo
+              <i className="fa-regular fa-image"></i>
+            </label>
+            <input
+              type="file"
+              name="fondo"
+              id="fondo"
+              className="ocultar"
+              onChange={(e) => setFondo(e.target.files[0])}
+            />
+            <input
+              type="color"
+              name="color"
+              id="fondo"
+              className="w-11 h-11 rounded-sm border-none outline-none"
+              // value={fondo}
+              onChange={(e) => setFondo(e.target.value)}
+            />
           </div>
-          <label
-            htmlFor="imagen"
-            className=" flex justify-center items-center w-32 h-12 gap-1 outline outline-1 outline-slate-500 rounded-md text-black text-xl cursor-pointer"
-          >
-            Imagen
-            <i className="fa-regular fa-image"></i>
-          </label>
-          <input
-            type="file"
-            name="imagen"
-            id="imagen"
-            className="ocultar"
-            onChange={(e) => setImagen(e.target.files[0])}
-          />
-          <label
-            htmlFor="fondo"
-            className=" flex justify-center items-center w-32 h-12 gap-1 outline outline-1 outline-slate-500 rounded-md text-black text-xl cursor-pointer"
-          >
-            Fondo
-            <i className="fa-regular fa-image"></i>
-          </label>
-          <input
-            type="file"
-            name="fondo"
-            id="fondo"
-            className="ocultar"
-            onChange={(e) => setFondo(e.target.files[0])}
-          />
-          <input
-            type="color"
-            name="color"
-            id="fondo"
-            className="w-11 h-11 rounded-sm border-none outline-none"
-            // value={fondo}
-            onChange={(e) => setFondo(e.target.value)}
-          />
         </div>
         <div className="width margin flex gap-1 flex-col justify-center">
-        <label htmlFor="id" className=" m-1 font-bold">
+          <label htmlFor="id" className=" m-1 font-bold">
             Id:
           </label>
           <input

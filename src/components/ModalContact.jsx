@@ -31,11 +31,11 @@ const ModalContact = () => {
       }  `}
     >
       <form
-        className=" shadow-sm relative shadow-slate-400 flex justify-evenly rounded-md bg-white h-14 w-5/12 items-center"
+        className=" shadow-sm relative shadow-slate-400 flex justify-evenly rounded-md bg-white h-14 w-11/12 sm:w-5/12 items-center"
         onSubmit={handerlSubtmit}
       >
         <i
-          className=" fa-solid fa-circle-xmark absolute right-0 top-0 translate-x-7 text-2xl cursor-pointer"
+          className=" fa-solid fa-circle-xmark absolute right-0 top-0 translate-x-6 sm:translate-x-7 text-2xl cursor-pointer"
           onClick={handelClick}
         ></i>
         <input

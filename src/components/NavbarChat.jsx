@@ -17,13 +17,13 @@ const NavbarChat = () => {
   };
   return (
     <>
-      <header className="flex justify-center items-center bg-indigo-500 h-12">
-        <h1 className=" text-white font-bold text-xl text-center w-9/12">
+      <header className="flex justify-center items-center flex-wrap bg-indigo-500 h-20 sm:h-12">
+        <h1 className=" text-white font-bold text-xl text-center w-full sm:w-9/12">
           Administra tus conversaciones
         </h1>
         <Link
           to="perfil"
-          className=" w-16 h-8 ml-auto m-1 profile rounded-md text-white font-bold"
+          className=" w-16 h-8 sm:ml-auto m-1 profile rounded-md text-white font-bold"
         >
           Perfil
         </Link>

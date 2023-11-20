@@ -11,6 +11,7 @@ const AppProvider = ({ children }) => {
   const [id, setId] = useState(null);
   const [mostrar, setMostra] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [mostrarChat,setMostrarChat]=useState(false)
   useEffect(() => {
     const autenticarUser = async () => {
       const token = localStorage.getItem("token-id-user");
@@ -44,7 +45,7 @@ const AppProvider = ({ children }) => {
       const id = localStorage.getItem("id_user");
       try {
         const { data } = await urlAxios(`/chat/perfil/contactos/${id}`);
-        console.log(data);
+        // console.log(data);
         setContatos(data);
       } catch (error) {
         console.log(error);
@@ -114,7 +115,8 @@ const AppProvider = ({ children }) => {
           id,
           actulizar_contacto,
           eliminar_contacto,
-          loading, setLoading
+          loading, setLoading,
+          mostrarChat,setMostrarChat
         }}
       >
         {children}
