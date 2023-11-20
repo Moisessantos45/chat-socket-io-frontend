@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import urlAxios from "../config/UrlAxios";
 import "../css/styleForm.css";
@@ -23,7 +23,7 @@ const FormLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { loading, setLoading } = UseApp();
+  const { loading, setLoading,userData } = UseApp();
   const { setUserData } = UseAuth();
 
   const handelSubtmi = async (e) => {
@@ -43,6 +43,12 @@ const FormLogin = () => {
     }
     setLoading(false);
   };
+
+  useEffect(()=>{
+    if(userData?.id || localStorage.getItem("token-id-user")){
+      navigate(`/chat/${userData.id}`)
+    }
+  },[])
   // if (loading) return <Loading />;
   return (
     <>
