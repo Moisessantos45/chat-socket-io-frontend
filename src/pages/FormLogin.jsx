@@ -33,7 +33,7 @@ const FormLogin = () => {
         email,
         password,
       });
-      console.log(data);
+      // console.log(data);
       setUserData(data);
       localStorage.setItem("token-id-user", data.token);
       navigate(`/chat/${data.id}`);

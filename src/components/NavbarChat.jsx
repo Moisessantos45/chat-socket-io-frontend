@@ -3,9 +3,11 @@ import urlAxios from "../config/UrlAxios";
 import UseApp from "../Hooks/UseApp";
 
 const NavbarChat = () => {
-  const { id } = UseApp();
+  const { userData } = UseApp();
+  // console.log(userData.id)
   const navigate=useNavigate()
   const logout = async () => {
+    const id=userData.id
     try {
       await urlAxios.post("/chat/logout", { id });
       localStorage.removeItem("token-id-user");
